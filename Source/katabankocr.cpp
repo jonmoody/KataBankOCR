@@ -40,7 +40,7 @@ string BankAccountReader::ReadAllAccounts() {
 
     while (this->BankFile.good()) {
         accountNumber = ConvertAccountNumber(GetAccountNumber());
-        accountsList += accountNumber + Legible(accountNumber) + '\n';
+        accountsList += accountNumber + GetAccountStatus(accountNumber) + '\n';
     }
 
     return accountsList;
@@ -128,10 +128,13 @@ bool BankAccountReader::IsChecksumValid(string accountNumber) {
     return checksum % 11 == 0;
 }
 
-string BankAccountReader::Legible(string accountNumber) {
+string BankAccountReader::GetAccountStatus(string accountNumber) {
     int illegibleDigit = accountNumber.find('?');
     if (illegibleDigit != string::npos) {
         return " ILL";
+    }
+    else if (!IsChecksumValid(accountNumber)) {
+        return " ERR";
     }
     return "";
 }

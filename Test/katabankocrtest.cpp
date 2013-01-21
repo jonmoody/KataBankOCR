@@ -26,15 +26,15 @@ TEST(BankAccountReader, TestReadFile) {
 
 TEST(BankAccountReader, TestReadAllAccounts) {
     string expected = string("000000000\n") +
-                        "111111111\n" +
-                        "222222222\n" +
-                        "333333333\n" +
-                        "444444444\n" +
-                        "555555555\n" +
-                        "666666666\n" +
-                        "777777777\n" +
-                        "888888888\n" +
-                        "999999999\n" +
+                        "111111111 ERR\n" +
+                        "222222222 ERR\n" +
+                        "333333333 ERR\n" +
+                        "444444444 ERR\n" +
+                        "555555555 ERR\n" +
+                        "666666666 ERR\n" +
+                        "777777777 ERR\n" +
+                        "888888888 ERR\n" +
+                        "999999999 ERR\n" +
                         "123456789\n";
 
     BankAccountReader bankAccountReader(RESOURCES_PATH + "useCase1.txt");
@@ -229,7 +229,7 @@ TEST(BankAccountReader, TestLegibleDigits) {
     string accountNumber = bankAccountReader.GetAccountNumber();
     string convertedAccountNumber = bankAccountReader.ConvertAccountNumber(accountNumber);
 
-    ASSERT_EQ(expected, bankAccountReader.Legible(convertedAccountNumber));
+    ASSERT_EQ(expected, bankAccountReader.GetAccountStatus(convertedAccountNumber));
 }
 
 int main(int argc, char **argv)

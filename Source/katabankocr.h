@@ -19,7 +19,7 @@ class BankAccountReader
         string ConvertAccountNumber(string accountNumber);
         string ConvertSingleDigit(string digit);
         bool IsChecksumValid(string accountNumber);
-        string Legible(string accountNumber);
+        string GetAccountStatus(string accountNumber);
         void WriteOutputFile();
 };
 
